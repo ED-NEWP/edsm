@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 // use chrono::naive::NaiveDateTime;
 use serde::Deserialize;
+use elite_journal::prelude::{Security, Government, Allegiance, Economy};
 use crate::{Body, ControllingFaction, Faction, State};
 // use crate::serde_utils;
 
@@ -87,8 +88,8 @@ where
 /// General [System] information
 #[derive(Deserialize, Debug)]
 pub struct Information {
-    pub allegiance: Option<String>,
-    pub government: Option<String>,
+    pub allegiance: Option<Allegiance>,
+    pub government: Option<Government>,
 
     /// The controlling faction's primary state.
     // TODO: Revisit if these can be a Faction object easily.
@@ -100,10 +101,11 @@ pub struct Information {
     pub state: Option<State>,
 
     pub population: Option<u64>,
-    pub security: Option<String>,
-    pub economy: Option<String>,
+    pub security: Option<Security>,
+    pub economy: Option<Economy>,
     #[serde(rename = "secondEconomy")]
-    pub second_economy: Option<String>,
+    pub second_economy: Option<Economy>,
+    // TODO: Add type in elite_journal
     pub reserve: Option<String>,
 }
 

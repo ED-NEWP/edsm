@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use elite_journal::prelude::{State as JournalState, Happiness, Allegiance, Government};
 use serde::Deserialize;
 
 /// A group which inhabits one or more systems
@@ -9,19 +10,19 @@ use serde::Deserialize;
 pub struct Faction {
     pub id: u64,
     pub name: String,
-    pub allegiance: Option<String>,
-    pub government: Option<String>,
+    pub allegiance: Option<Allegiance>,
+    pub government: Option<Government>,
 
     pub influence: f64,
     #[serde(rename = "influenceHistory")]
     pub influence_history: Option<HashMap<u64, f64>>,
 
-    pub happieness: Option<String>,
+    pub happieness: Option<Happiness>,
     #[serde(rename = "happienessHistory")]
-    pub happieness_history: Option<HashMap<u64, String>>,
+    pub happieness_history: Option<HashMap<u64, Happiness>>,
 
     #[serde(rename = "state")]
-    pub primary_state: Option<String>,
+    pub primary_state: Option<JournalState>,
     #[serde(rename = "stateHistory")]
     pub primary_state_history: Option<StateHistory>,
 
@@ -52,8 +53,8 @@ pub struct Faction {
 pub struct ControllingFaction {
     pub id: u64,
     pub name: Option<String>,
-    pub allegiance: Option<String>,
-    pub government: Option<String>,
+    pub allegiance: Option<Allegiance>,
+    pub government: Option<Government>,
 }
 
 /// A condition which a faction can be experiencing
@@ -61,7 +62,7 @@ pub struct ControllingFaction {
 /// Some states effect every system a faction is present in.
 #[derive(Deserialize, Debug)]
 pub struct State {
-    pub state: String,
+    pub state: JournalState,
 }
 
 /// A state with it's trend

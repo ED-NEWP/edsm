@@ -1,3 +1,4 @@
+use elite_journal::{Allegiance, Government};
 use edsm::Coordinate;
 use edsm::api::*;
 
@@ -113,8 +114,8 @@ fn test_factions() {
     let controlling_faction = system.controlling_faction.unwrap();
     assert_eq!(81861, controlling_faction.id);
     assert_eq!("New Pilots Initiative", controlling_faction.name.unwrap());
-    assert_eq!("Independent", controlling_faction.allegiance.unwrap());
-    assert_eq!("Corporate", controlling_faction.government.unwrap());
+    assert_eq!(Allegiance::Independent, controlling_faction.allegiance.unwrap());
+    assert_eq!(Government::Corporate, controlling_faction.government.unwrap());
     let total_inf: f64 = system.factions.unwrap().iter().map(|f| f.influence).sum();
     // Would be nice if this was 1_000...
     let expected_precision = 100.;

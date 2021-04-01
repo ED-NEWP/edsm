@@ -9,3 +9,6 @@ serde = { version = "*", features = ["derive"] }
 serde_json = "*"
 chrono = { version = "*", features = ["serde"] }
 reqwest = { version = "*", features = ["blocking", "json"] }
+
+[dependencies.elite_journal]
+git = "https://github.com/ED-NEWP/elite_journal"
